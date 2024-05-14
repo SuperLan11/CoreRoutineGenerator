@@ -5,7 +5,8 @@ Clam shell
 Clam shell plank
 Leg lifts sitting
 Leg lifts midair
-Step up/sideways step up
+Step up
+Step up sideways 
 Donkey Kicks
 Scorpion
 Bird dog
@@ -24,13 +25,13 @@ Squat prisoner
 Intermediate
 
 Bicycle slow
-Bicycle to Knee
-Bicycle Pauses
+Bicycle to knee
+Bicycle pauses
 Dips
 Leg raises
 Leg reverse crunch
 Squat deep
-Mountain Climbers
+Mountain climbers
 Superman
 Superman arch ups
 Windshield Wiper
@@ -52,13 +53,13 @@ Plank leg crossover/toe stack
 Advanced
 
 Squat cossack
-Breakdancer twist
-Breakdancer cross leg in push-up
+Breakdancer
+Breakdancer leg cross
 Plank up downs
 Plank knee to elbow
 Plank arm & leg lift
 Rowboats
-Sideways plank, laterals
+Sideways plank
 Push-up spiderman
 Flutter kicks
 Flutter kick raise

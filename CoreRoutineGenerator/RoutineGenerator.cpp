@@ -1,3 +1,5 @@
+// push up sphinx/hindu never picked?
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -205,9 +207,21 @@ void remove(vector<T>* vec, int index)
 	(*vec) = newVec;
 }
 
+// remove difficulties past the max difficulty desired
+void removeDifficulties(vector<int> *ptrValidListIndexes, int maxDiff)
+{
+	// size changes as you delete!
+	for (int diffIndex = maxDiff; diffIndex < (*ptrValidListIndexes).size(); diffIndex++)
+	{
+		remove(ptrValidListIndexes, diffIndex);		
+		// decrement difficulty index as list changes size so the loop doesn't end prematurely
+		diffIndex--;
+	}
+}
+
 // sometimes stops short of high numExercises inputs,
 // especially if previous routine also had many exercises
-vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int numExercises, char uniq)
+vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int numExercises, char uniq, int maxDiff)
 {
 	srand(time(0));
 
@@ -220,8 +234,9 @@ vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int n
 
 	vector<int> validListIndexes = { 0, 1, 2, 3 };
 	vector<int>* ptrValidListIndexes = &validListIndexes;
-
-	bool useUnique = (uniq == 'y');
+	
+	removeDifficulties(ptrValidListIndexes, maxDiff);
+	bool useUniqueExercises = (uniq == 'y' || uniq == 'Y');
 
 	while (numExercisesToPick > 0 && validListIndexes.size() > 0)
 	{
@@ -247,7 +262,7 @@ vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int n
 			continue;
 		}
 
-		if (useUnique && contains(previousRoutine, exercise))
+		if (useUniqueExercises && contains(previousRoutine, exercise))
 		{
 			remove(diffList, randListLine);
 			continue;
@@ -350,11 +365,19 @@ void main()
 	vector< vector<std::string> > diffLists = fragmentList(exerciseList);
 
 	int numExercises;
+	int maxDiff = 0;
+	char useUniqueExercises;
+	
 	std::cout << "Enter the number of desired exercises in routine: ";
+	// could check for invalid input later
 	cin >> numExercises;
-	std::cout << "Would you like exercises unique from previous rountine (y/n): ";
-	char useUnique;
-	cin >> useUnique;
-	vector<std::string> routine = generateRoutine(diffLists, numExercises, useUnique);
+
+	std::cout << "What is the max difficulty you want?\n1. Easy, 2. Intermediate, 3. Advanced, 4. Expert: ";
+	cin >> maxDiff;
+
+	std::cout << "Would you like exercises unique from previous rountine (y/n): ";	
+	cin >> useUniqueExercises;
+
+	vector<std::string> routine = generateRoutine(diffLists, numExercises, useUniqueExercises, maxDiff);
 	overwriteFiles(routine);
 }
