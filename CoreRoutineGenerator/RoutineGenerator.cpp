@@ -221,7 +221,7 @@ void removeDifficulties(vector<int> *ptrValidListIndexes, int maxDiff)
 
 // sometimes stops short of high numExercises inputs,
 // especially if previous routine also had many exercises
-vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int numExercises, char uniq, int maxDiff)
+vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int numExercises, bool uniq, int maxDiff)
 {
 	srand(time(0));
 
@@ -236,10 +236,11 @@ vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int n
 	vector<int>* ptrValidListIndexes = &validListIndexes;
 	
 	removeDifficulties(ptrValidListIndexes, maxDiff);
-	bool useUniqueExercises = (uniq == 'y' || uniq == 'Y');
+	bool useUniqueExercises = uniq;
 
 	while (numExercisesToPick > 0 && validListIndexes.size() > 0)
 	{
+		// sequentially pick one exercise from each difficulty 
 		int listIndex = numExercisesToPick % validListIndexes.size();
 		diffList = &diffLists[listIndex];
 
@@ -274,6 +275,15 @@ vector<std::string> generateRoutine(vector<vector<std::string>> diffLists, int n
 		numExercisesToPick -= 1;
 	}
 	return routine;
+}
+
+void printRoutine(vector<std::string> routine)
+{
+	std::cout << "\n";
+	for (int i = 0; i < routine.size(); i++)
+	{
+		std::cout << routine[i] << "\n";
+	}
 }
 
 void printExercises(vector<vector<std::string>> diffVecs)
@@ -356,28 +366,105 @@ vector<std::string> fillExerciseList(vector<std::string> list)
 	return list;
 }
 
+bool isInteger(std::string str)
+{
+	for (char c : str)
+	{
+		if (!isdigit(c))					
+			return false;
+	}	
+	return true;
+}
+
+bool between(int num, int low, int high)
+{
+	// low and high are inclusive
+	if (num >= low && num <= high)
+		return true;
+	return false;
+}
+
+bool containsYes(std::string str)
+{
+	for (char c : str)
+	{
+		if (tolower(c) == 'y')		
+			return true;		
+	}
+	return false;
+}
+
+
+bool containsNo(std::string str)
+{
+	for (char c : str)
+	{
+		if (tolower(c) == 'n')
+			return true;
+	}
+	return false;
+}
+
 void main()
 {
 	vector<std::string> exerciseList;
-
 	exerciseList = fillExerciseList(exerciseList);
-
-	vector< vector<std::string> > diffLists = fragmentList(exerciseList);
-
-	int numExercises;
-	int maxDiff = 0;
-	char useUniqueExercises;
+	vector< vector<std::string> > diffLists = fragmentList(exerciseList);			
 	
-	std::cout << "Enter the number of desired exercises in routine: ";
-	// could check for invalid input later
-	cin >> numExercises;
+	std::cout << "Enter the number of desired exercises in routine: ";	
+	std::string numExercisesInput = "";
+	std::getline(cin, numExercisesInput);
 
-	std::cout << "What is the max difficulty you want?\n1. Easy, 2. Intermediate, 3. Advanced, 4. Expert: ";
-	cin >> maxDiff;
+	while(!isInteger(numExercisesInput))
+	{
+		std::cout << "\nInvalid input\nEnter the number of desired exercises in routine: ";
+		std::getline(cin, numExercisesInput);
+	}
+	int numExercises = stoi(numExercisesInput);
 
-	std::cout << "Would you like exercises unique from previous rountine (y/n): ";	
-	cin >> useUniqueExercises;
+	std::cout << "\nWhat is the max difficulty you want?\n1. Easy, 2. Intermediate, 3. Advanced, 4. Expert: ";	
+	std::string difficultyInput = "";
+	std::getline(cin, difficultyInput);
+	bool validated = false;
+
+	while (!validated)
+	{
+		if (!isInteger(difficultyInput))
+		{
+			std::cout << "\nInvalid input\nWhat is the max difficulty you want?"
+				<< "\n1. Easy, 2. Intermediate, 3. Advanced, 4. Expert: ";
+			std::getline(cin, difficultyInput);
+		}
+		else if (!between(stoi(difficultyInput), 1, 4))
+		{
+			std::cout << "\nNot in range\nWhat is the max difficulty you want?"
+				<< "\n1. Easy, 2. Intermediate, 3. Advanced, 4. Expert: ";
+			std::getline(cin, difficultyInput);
+		}
+		else
+		{
+			validated = true;
+		}
+	}		
+	int maxDiff = stoi(difficultyInput);
+	
+	std::string uniqueStrInput = "";	
+	std::cout << "\nWould you like exercises unique from previous rountine? (y/n): ";
+	std::getline(cin, uniqueStrInput);
+
+	while (!containsYes(uniqueStrInput) && !containsNo(uniqueStrInput))
+	{
+		std::cout << "\nInvalid input\nWould you like exercises unique from previous rountine? (y/n):  ";
+		std::getline(cin, uniqueStrInput);
+	}
+
+	bool useUniqueExercises = false;
+	if (containsYes(uniqueStrInput))
+		useUniqueExercises = true;
+	else if (containsNo(uniqueStrInput))
+		useUniqueExercises = false;
 
 	vector<std::string> routine = generateRoutine(diffLists, numExercises, useUniqueExercises, maxDiff);
 	overwriteFiles(routine);
+	printRoutine(routine);
 }

@@ -2,13 +2,14 @@
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(152,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(188,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(214,42): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(227,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(226,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(283,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(286,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(298,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(324,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(361,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(292,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(295,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(307,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(330,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(333,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(409,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(200,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\lando\source\repos\CoreRoutineGenerator\CoreRoutineGenerator\RoutineGenerator.cpp(216): message : see reference to function template instantiation 'void remove<int>(std::vector<int,std::allocator<int>> *,int)' being compiled
   CoreRoutineGenerator.vcxproj -> C:\Users\lando\source\repos\CoreRoutineGenerator\Debug\CoreRoutineGenerator.exe
